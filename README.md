@@ -47,11 +47,17 @@ cd pokemon-tcg-angular-15
 
 
 3. **Instale as Dependências:**
+```
 npm install
+```
+
 
 
 4. **Execute a Aplicação:**
+```
 ng serve
+```
+
 
 
 5. **Acesse a Aplicação:**
