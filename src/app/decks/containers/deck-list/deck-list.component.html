@@ -1,0 +1,17 @@
+<div class="h-screen w-full flex flex-col p-7">
+    <div class="grid grid-cols-1 m-0 grid-flow-row">
+        <div class="span-1">
+            <span class="font-bold text-slate-700 text-3xl">Meus baralhos pokémon</span>
+        </div>
+    </div>
+
+    <div class="flex flex-1 items-center justify-center flex-col mt-4">
+        <app-deks (delete)="delete($event)" class="flex flex-1 w-full"  [decks]="facade.decks$ | async"></app-deks>
+    </div>
+
+    <div class="add-button " pTooltip="Criar novo baralho">
+        <button routerLink="/deck/create" class="w-full h-full flex items-center justify-center bg-slate-700 p-9 rounded-full hover:bg-slate-900 transitioin-all duration-200">
+            <i class="pi pi-plus  text-2xl text-slate-50"></i>
+        </button>
+    </div>
+</div>

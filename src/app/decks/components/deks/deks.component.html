@@ -1,0 +1,29 @@
+<div *ngIf="decks.length" class="h-full gap-8 w-full flex flex-1  overflow-auto items-center  rounded-lg p-2  ">
+
+    <div class="card gap-5  flex flex-col p-7" *ngFor="let deck of decks; index as i">
+        <div class="header w-full flex flex-col items-center justify-between">
+            <span class="text-5xl text-slate-800">{{deck.title}} </span>
+            <span class="text-2xl text-slate-800">{{deck.cards.length}} / 60 </span>
+        </div>
+        <div class="container-swiper flex flex-1 items-center justify-center flex-col">
+            <swiper-container effect="cards">
+                <swiper-slide *ngFor="let card of deck.cards; index as i">
+                    <img [src]="card.images.small" alt="">
+                </swiper-slide>
+            </swiper-container>
+        </div>
+
+        <div class="footer-buttons flex items-center justify-center gap-3">
+            <p-button [routerLink]="['/deck/edit', deck.id]" styleClass="p-icon-button text-indigo-500" icon="pi pi-pencil"></p-button>
+            <p-button (onClick)="confirm(deck, $event)" styleClass="p-icon-button text-indigo-500 p-button-danger" icon="pi pi-trash"></p-button>
+            <p-button [routerLink]="['/deck/view', deck.id]" styleClass="p-icon-button text-indigo-500 p-button-secondary" icon="pi pi-eye"></p-button>            
+        </div>
+       
+    </div>
+</div>
+
+<div *ngIf="!decks.length" class="w-full flex flex-1 items-center justify-center">
+    <app-empty text="Ops! Você ainda não tem decks para exibir"></app-empty>
+</div>
+
+<p-confirmPopup key="deleteDeck"></p-confirmPopup>

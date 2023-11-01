@@ -1,0 +1,23 @@
+<div class="h-screen w-full flex flex-col flex-col p-7">
+    <div class="grid grid-cols-1 m-0 grid-flow-row">
+        <div class="span-1">
+            <span class="font-bold text-slate-700 text-3xl">Crie seu deck pokémon</span>
+        </div>
+    </div>
+
+    <div class="relative h-full w-full flex flex-1 felx-col md:flex-row overflow-auto bg-blue-50 mt-5 rounded-lg">
+        <app-cards 
+            class="flex flex-1"
+            [editMode]="editMode"
+            [viewMode]="viewMode"
+            [form]="form"
+            (loadMoreCards)="loadMoreCards($event)"
+            (update)="updateDeck($event)"
+            (cancel)="cancel()"
+            (filter)="applyFilter($event)" 
+            (save)="saveDeck($event)"
+            [options]="facade.types$ | async" 
+            [cards]="facade.cardsFiltered$ | async">
+        </app-cards>
+    </div>
+</div>

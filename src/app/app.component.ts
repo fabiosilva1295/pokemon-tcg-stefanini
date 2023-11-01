@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import Swiper  from 'swiper';
+
+const swiper = new Swiper('.swiper-container', { 
+  navigation: { 
+  nextEl: '.swiper-button-next', 
+  prevEl: '.swiper-button-prev'
+  }
+  });
 
 @Component({
   selector: 'app-root',
@@ -6,5 +14,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pokemon-tcg-app';
 }

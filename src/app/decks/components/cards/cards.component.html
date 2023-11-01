@@ -1,0 +1,93 @@
+<div class="h-full hidden overflow-auto  md:flex  web  flex-1 bg-blue-100 items-center ">
+    <div class="form w-96 relative bg-indigo-950 flex flex-col gap-4 h-full p-4">
+        <div class="p-input-icon-right w-full" [formGroup]="form">
+            <input formControlName="title" class="w-full" type="text" pInputText placeholder="Nome do baralho">
+        </div>
+
+       
+
+        <div class="h-full w-full deck-container p-4 flex flex-col items-center justify-center">
+            <div class="grid grid-flow-row grid-cols-1">
+                <div class="span-1 flex justify-center mb-6">
+                    <span class="text-2xl text-slate-50">{{_cards.controls.length}} / 60</span>
+                </div>
+            </div>
+            <swiper-container effect="cards">
+                <swiper-slide  *ngFor="let control of _cards.controls; index as i">
+                    <div class="card-container p-2 h-full w-full">
+                        <img class="h-full" [src]="control.value.images.small" >
+                    </div>
+                </swiper-slide>
+            </swiper-container>
+        </div>
+
+        <div class="bottom-buttons py-3 px-3 m-0 left-0 w-full absolute bottom-0">
+            <div *ngIf="!view" class="grid gap-4 flow-row grid-cols-2">
+                <p-button (onClick)="edit ? updateDeck() : saveDeck()"[disabled]="!form.valid" styleClass="span-1 w-full " label="Salvar"></p-button>
+                <p-button (onClick)="confirm($event)" styleClass="span-1 w-full p-button-danger" label="cancelar"></p-button>
+            </div>
+
+            <div *ngIf="view" class="grid gap-4 flow-row grid-cols-1">
+                <p-button (onClick)="cancel.emit(true)" styleClass="span-1 w-full " label="Fechar"></p-button>
+            </div>
+
+            <p-confirmPopup></p-confirmPopup>
+        </div>
+    </div>
+
+    <div class="content h-full w-full overflow-auto ">
+        <p-dataView  [paginator]="true" [first]="1" [rows]="10" #dv styleClass="dataView" [value]="cards" [layout]="layout">
+            <ng-template  pTemplate="header">
+                <div *ngIf="options.length" class="flex justify-between w-full">
+                    <div class="filters flex items-center gap-3">
+                        <i class="pi pi-filter"></i>
+                        <p-dropdown styleClass="w-full" (onChange)="applyFilter()" [(ngModel)]="filterOptions[typeOptions[i].toLowerCase()]" [placeholder]="typeOptions[i]" [options]="option" *ngFor="let option of options; index as i"></p-dropdown>
+                    </div>
+                </div>
+
+                <div *ngIf="!options.length" class="flex justify-between w-full">
+                    <div class="filters flex items-center gap-3">
+                       <p-skeleton *ngFor="let option of [1,2,3]" width="8rem" height="3rem"></p-skeleton>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template let-card pTemplate="listItem">
+
+                <div class="grid grid-flow-row grid-cols-1 m-0">
+                    <div class="span-1 py-4 px-8 flex items-center justify-between">
+                        <div class="img-descriptions h-full flex items-center gap-4">
+                            <div class="img-container p-2 bg-slate-100 shadow-md rounded-md h-full">
+                                <img style="max-height: 150px;" [src]="card.images.small" alt="">
+                            </div>
+                            <div class="descriptions flex-1 h-full flex items-start flex-col p-2">
+                                <div class="grid  gap-5 cols-1 grid-flow-row m-0">
+                                    <div class="span1 text-3xl text-slate-700">{{card.name}}</div>
+                                    <div class="span-1 ">
+                                        <span class="text-lg font-medium">
+                                            Tipo
+                                        </span>
+                                        <span class="p-2 py-1 rounded-full text-slate-600"
+                                            [style.background]="getPokemonTypeColor(card.types?.length ? card.types[0] : card.supertype)">
+                                            {{card.types?.length || card.type ? card.types[0]: card.supertype }}
+                                        </span>
+                                    </div>
+                                    <div class="span-1">
+                                        <span class="text-1xl font-bold">Contém no seu deck: </span>
+                                        <span>{{getQuantityOfCardInDeck(card)}}</span>
+                                        <span class="text-red-500 font-bold text-1xl ms-4" *ngIf="getQuantityOfCardInDeck(card) == 4">Maxímo</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="!view" class="button-add flex flex-col gap-3">
+                            <p-button *ngIf="getQuantityOfCardInDeck(card) < 4" (click)="addCard(card)" styleClass="p-button-rounded text-indigo-500" label="Adicionar + 1" ></p-button>
+                            <p-button *ngIf="getQuantityOfCardInDeck(card) > 0" (click)="removeCard(card)" styleClass="p-button-rounded p-button-danger text-indigo-500" label="Remover - 1" ></p-button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+</div>
