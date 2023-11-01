@@ -39,8 +39,11 @@ Para executar a aplicação Pokemon TCG Angular 15 - Desafio Stefanini, siga est
    - Certifique-se de ter o Node.js e o Angular CLI instalados em seu sistema.
 
 2. **Clone o Repositório:**
+```
 git clone https://github.com/seu-usuario/pokemon-tcg-angular-15.git
 cd pokemon-tcg-angular-15
+```
+
 
 
 3. **Instale as Dependências:**
