@@ -1,6 +1,6 @@
 # Pokemon TCG Angular 15 - Desafio Stefanini
 
-Bem-vindo ao Pokemon TCG Angular 15 - Desafio Stefanini! Esta é uma aplicação que permite aos usuários criar, visualizar, editar e excluir baralhos do Pokemon Trading Card Game (TCG). Com esta aplicação, você pode organizar suas cartas favoritas em baralhos personalizados e gerenciar sua coleção de forma eficaz. Abaixo estão detalhadas as funcionalidades e padrões utilizados nesta aplicação.
+Bem-vindo ao Pokemon TCG - Desafio Stefanini! Esta é uma aplicação que permite aos usuários criar, visualizar, editar e excluir baralhos do Pokemon Trading Card Game (TCG). Com esta aplicação, você pode organizar suas cartas favoritas em baralhos personalizados e gerenciar sua coleção de forma eficaz. Abaixo estão detalhadas as funcionalidades e padrões utilizados nesta aplicação.
 
 ## Funcionalidades
 
@@ -40,8 +40,8 @@ Para executar a aplicação Pokemon TCG Angular 15 - Desafio Stefanini, siga est
 
 2. **Clone o Repositório:**
 ```
-git clone https://github.com/seu-usuario/pokemon-tcg-angular-15.git
-cd pokemon-tcg-angular-15
+git clone https://github.com/fabiosilva1295/pokemon-tcg-stefanini.git
+cd pokemon-tcg-app
 ```
 
 

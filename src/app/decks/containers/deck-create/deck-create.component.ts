@@ -35,7 +35,6 @@ export class DeckCreateComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id'); 
     const view = this.activatedRoute.snapshot.paramMap.get('view');
-    console.log(view, id)
     id && !view ? this.setInitialForm(id) : false;
     id && view ? this.setViewForm() : false;
     !id && !view ? this.facade.getCards() : false;
