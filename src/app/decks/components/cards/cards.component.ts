@@ -63,7 +63,6 @@ export class CardsComponent implements OnInit {
 
     if(this.view && this.form.value) {
       this.cards = this.form.value.cards
-      console.log(this.cards)
     }
 
     this.responsiveOptions = [
